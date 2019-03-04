@@ -17,4 +17,43 @@
 #name example: r_1024_m_007.png (edited) 
 #Deadline to create images: Tuesday night. (edited)
 
-#
+
+import os, shutil
+import random
+
+#noball, redball, greenball
+options = ['n', 'r', 'g']	
+
+#dir sturcture
+working_folder = 'labeled_dataset'
+working_dir = os.getcwd() + '/' + working_folder + '/'
+
+
+#function to give random ball selection from py list
+def choose_random(options):
+	choice=random.randint(0, 2)
+	return options[choice]
+
+def zeros(number):
+	if number<10: return '00'+str(number)
+	if number<100: return '0'+str(number)
+	if number<1000: return str(number)
+
+#TODO remove this
+n=0
+r=0
+g=0
+
+index=0
+for file in os.listdir(working_folder):
+	choice=choose_random(options)
+	shutil.move(working_dir+file, working_dir+choice+'_1024_m_'+zeros(index)+'.png') # r_1024_m_007.png
+	index=index+1
+
+	#TODO remove this
+	if choice=='n': n=n+1
+	if choice=='r': r=r+1
+	if choice=='g': g=g+1
+
+print('Ratio (n,r,g): ' + str(n) + ' ' + str(r) + ' ' + str(g))
+print(str(index) + ' images converted.')
