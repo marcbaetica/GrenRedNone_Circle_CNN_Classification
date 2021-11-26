@@ -3,14 +3,14 @@ from bokeh.plotting import figure, show
 from PIL import Image
 
 
-images = os.listdir('dataset')
+images = os.listdir('raw_imgs')
 
 single = 0
 triple = 0
 quadruple = 0
 
 for image in images:
-    im = Image.open('dataset/' + image)
+    im = Image.open('raw_imgs/' + image)
     print(im.format, im.size, im.mode)
     bands = im.mode
     single = single+1 if bands == 'P' else single
